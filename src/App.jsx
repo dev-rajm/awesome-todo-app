@@ -1,10 +1,10 @@
-import React from "react";
+import Header from "./components/Header";
 
 const App = () => {
   return (
-    <main>
-      <h1 className="text-5xl text-orange-500">Hello World!</h1>
-    </main>
+    <div className="flex flex-col">
+      <Header />
+    </div>
   );
 };
 
