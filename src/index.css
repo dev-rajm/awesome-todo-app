@@ -1,9 +1,10 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&family=Poppins&display=swap");
 @import "tailwindcss";
 
 body {
   overflow-x: hidden;
   font-weight: 400;
   font-style: normal;
+  color: #212529;
   font-family: "Poppins", sans-serif;
 }
