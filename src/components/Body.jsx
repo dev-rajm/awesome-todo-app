@@ -1,10 +1,11 @@
 import { CirclePlus } from "lucide-react";
+import Dropdown from "./Dropdown";
 
 const Body = () => {
   return (
     <main className="max-w-5xl flex flex-col w-full mx-auto py-1">
       <div className="max-w-3xl mx-auto w-full px-6">
-        <form>
+        <div className="form-element">
           <input
             type="text"
             name="title"
@@ -16,7 +17,7 @@ const Body = () => {
               name="description"
               id="desc"
               placeholder="Start typing your note..."
-              className="h-16 font-[Inter] shadow w-full rounded-md outline outline-slate-100 focus:outline-black focus:outline-2 focus:outline-offset-2 p-2.5 mt-3 text-[15px] resize-none placeholder:text-gray-500/55 focus:bg-slate-50"
+              className="h-16 font-[Inter] shadow w-full rounded-md outline outline-slate-100 focus:outline-black focus:outline-2 focus:outline-offset-2 p-2.5 mt-3 text-[15px] resize-none placeholder:text-gray-400 focus:bg-slate-50"
             ></textarea>
             <label
               htmlFor="desc"
@@ -27,13 +28,13 @@ const Body = () => {
           </div>
 
           <div className="flex justify-end w-full space-x-2">
-            <button>No Category</button>
+            <Dropdown />
             <button className="bg-black px-3.5 h-9 flex gap-2.5 items-center font-[Inter] text-[13px] rounded-md text-white">
               <CirclePlus size={15} strokeWidth={2} />
               <span>Save Note</span>
             </button>
           </div>
-        </form>
+        </div>
       </div>
     </main>
   );
