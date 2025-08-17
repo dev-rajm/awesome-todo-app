@@ -37,20 +37,20 @@ const Body = () => {
           </div>
         </div>
       </div>
-      <div className="min-w-5xl mx-auto w-full px-6">
+      <div className="max-w-5xl mx-auto w-full px-6 mt-12">
         <div className="flex justify-between">
           <div className="flex space-x-3 items-center">
-            <h2 className="text-lg font-semibold">Your Notes</h2>
+            <h2 className="text-lg font-medium">Your Notes</h2>
             <div className="border border-slate-200 size-9 rounded flex justify-center items-center">
               <LayoutList size={15} strokeWidth={2} />
             </div>
             <div className="flex items-center rounded-md border border-slate-200 h-9 px-3 space-x-1">
               <Tag size={15} strokeWidth={2} />
-              <span className="text-xs font-semibold">Categories</span>
+              <span className="text-xs font-medium">Categories</span>
             </div>
           </div>
           <div className="flex items-center space-x-3">
-            <button className="text-xs font-semibold text-red-500 rounded-md border border-slate-200 flex items-center px-3 h-9 space-x-1">
+            <button className="text-xs font-medium text-red-500 rounded-md border border-slate-200 flex items-center px-4 h-9 space-x-1">
               <Trash2 size={15} strokeWidth={2} />
               <span>Clear notes</span>
             </button>
