@@ -1,4 +1,4 @@
-import { CirclePlus, LayoutList } from "lucide-react";
+import { CirclePlus, LayoutList, Tag } from "lucide-react";
 import Dropdown from "./Dropdown";
 
 const Body = () => {
@@ -42,7 +42,11 @@ const Body = () => {
           <div className="flex space-x-3 items-center">
             <h2 className="text-lg font-semibold">Your Notes</h2>
             <div className="border border-slate-200 size-9 rounded flex justify-center items-center">
-              <LayoutList size={17} strokeWidth={2} />
+              <LayoutList size={15} strokeWidth={2} />
+            </div>
+            <div className="flex items-center rounded-md border border-slate-200 h-9 px-3 space-x-1">
+              <Tag size={15} strokeWidth={2} />
+              <span className="text-xs font-semibold">Categories</span>
             </div>
           </div>
           <div className="flex"></div>
