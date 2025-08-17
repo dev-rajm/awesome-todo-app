@@ -1,4 +1,4 @@
-import { CirclePlus, LayoutList, Tag } from "lucide-react";
+import { CirclePlus, LayoutList, Tag, Trash2 } from "lucide-react";
 import Dropdown from "./Dropdown";
 
 const Body = () => {
@@ -49,7 +49,13 @@ const Body = () => {
               <span className="text-xs font-semibold">Categories</span>
             </div>
           </div>
-          <div className="flex"></div>
+          <div className="flex items-center space-x-3">
+            <button className="text-xs font-semibold text-red-500 rounded-md border border-slate-200 flex items-center px-3 h-9 space-x-1">
+              <Trash2 size={15} strokeWidth={2} />
+              <span>Clear notes</span>
+            </button>
+            <Dropdown />
+          </div>
         </div>
       </div>
     </main>
