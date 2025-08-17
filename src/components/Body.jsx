@@ -10,7 +10,7 @@ const Body = () => {
           <input
             type="text"
             name="title"
-            className="w-full font-[Inter] p-2.5 rounded-md text-xs font-bold outline outline-slate-100 focus:outline-2 focus:outline-black focus:outline-offset-2"
+            className="w-full p-2.5 rounded-md text-xs font-bold border border-slate-100 focus:outline-2 focus:outline-black focus:outline-offset-2"
             placeholder="Note title (optional)"
           />
           <div className="mb-6">
@@ -18,7 +18,7 @@ const Body = () => {
               name="description"
               id="desc"
               placeholder="Start typing your note..."
-              className="h-16 font-[Inter] shadow w-full rounded-md outline outline-slate-100 focus:outline-black focus:outline-2 focus:outline-offset-2 p-2.5 mt-3 text-[15px] resize-none placeholder:text-gray-400 focus:bg-slate-50"
+              className="h-16 shadow w-full rounded-md border border-slate-100 focus:outline-black focus:outline-2 focus:outline-offset-2 p-2.5 mt-3 text-[15px] font-medium resize-none placeholder:text-gray-500/55 focus:bg-slate-50"
             ></textarea>
             <label
               htmlFor="desc"
@@ -30,7 +30,7 @@ const Body = () => {
 
           <div className="flex justify-end w-full space-x-2">
             <Dropdown />
-            <button className="bg-black px-3.5 h-9 flex gap-2.5 items-center font-[Inter] text-[13px] rounded-md text-white">
+            <button className="bg-black px-3.5 h-9 flex gap-2 items-center text-[13px] rounded-md text-white font-medium">
               <CirclePlus size={15} strokeWidth={2} />
               <span>Save Note</span>
             </button>
@@ -46,7 +46,7 @@ const Body = () => {
             </div>
             <div className="flex items-center rounded-md border border-slate-200 h-9 px-3 space-x-1">
               <Tag size={15} strokeWidth={2} />
-              <span className="text-xs font-medium">Categories</span>
+              <span className="text-xs font-semibold">Categories</span>
             </div>
           </div>
           <div className="flex items-center space-x-3">
