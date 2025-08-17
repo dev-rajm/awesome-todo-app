@@ -1,9 +1,10 @@
-import { CirclePlus } from "lucide-react";
+import { CirclePlus, LayoutList } from "lucide-react";
 import Dropdown from "./Dropdown";
 
 const Body = () => {
   return (
     <main className="max-w-5xl flex flex-col w-full mx-auto py-1">
+      {/* Input area */}
       <div className="max-w-3xl mx-auto w-full px-6">
         <div className="form-element">
           <input
@@ -34,6 +35,17 @@ const Body = () => {
               <span>Save Note</span>
             </button>
           </div>
+        </div>
+      </div>
+      <div className="min-w-5xl mx-auto w-full px-6">
+        <div className="flex justify-between">
+          <div className="flex space-x-3 items-center">
+            <h2 className="text-lg font-semibold">Your Notes</h2>
+            <div className="border border-slate-200 size-9 rounded flex justify-center items-center">
+              <LayoutList size={17} strokeWidth={2} />
+            </div>
+          </div>
+          <div className="flex"></div>
         </div>
       </div>
     </main>
