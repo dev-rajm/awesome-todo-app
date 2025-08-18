@@ -1,5 +1,6 @@
 import { CirclePlus, LayoutList, Tag, Trash2 } from "lucide-react";
 import Dropdown from "./Dropdown";
+import Card from "./Card";
 
 const Body = () => {
   return (
@@ -42,7 +43,7 @@ const Body = () => {
           <div className="flex space-x-3 items-center">
             <h2 className="text-lg font-medium">Your Notes</h2>
             <div className="border border-slate-200 size-9 rounded flex justify-center items-center">
-              <LayoutList size={15} strokeWidth={2} />
+              <LayoutList size={15} strokeWidth={2.5} />
             </div>
             <div className="flex items-center rounded-md border border-slate-200 h-9 px-3 space-x-1">
               <Tag size={15} strokeWidth={2} />
@@ -56,6 +57,16 @@ const Body = () => {
             </button>
             <Dropdown />
           </div>
+        </div>
+        <div className="notes-list my-9 grid grid-cols-3 gap-4">
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
         </div>
       </div>
     </main>
