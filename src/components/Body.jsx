@@ -11,7 +11,7 @@ const Body = () => {
           <input
             type="text"
             name="title"
-            className="w-full p-2.5 rounded-md text-xs font-bold border border-slate-100 focus:outline-2 focus:outline-black focus:outline-offset-2"
+            className="w-full p-2.5 rounded-md text-sm font-bold border border-slate-100 focus:outline-2 focus:outline-black focus:outline-offset-2"
             placeholder="Note title (optional)"
           />
           <div className="mb-6">
@@ -19,7 +19,7 @@ const Body = () => {
               name="description"
               id="desc"
               placeholder="Start typing your note..."
-              className="h-16 shadow w-full rounded-md border border-slate-100 focus:outline-black focus:outline-2 focus:outline-offset-2 p-2.5 mt-3 text-[15px] font-medium resize-none placeholder:text-gray-500/55 focus:bg-slate-50"
+              className="h-auto min-h-16 shadow w-full rounded-md border border-slate-100 focus:outline-black focus:outline-2 focus:outline-offset-2 p-2.5 mt-3 font-medium resize-none placeholder:text-gray-400/85 focus:bg-slate-50"
             ></textarea>
             <label
               htmlFor="desc"
@@ -47,11 +47,11 @@ const Body = () => {
             </div>
             <div className="flex items-center rounded-md border border-slate-200 h-9 px-3 space-x-1">
               <Tag size={15} strokeWidth={2} />
-              <span className="text-xs font-semibold">Categories</span>
+              <span className="text-sm font-semibold">Categories</span>
             </div>
           </div>
           <div className="flex items-center space-x-3">
-            <button className="text-xs font-medium text-red-500 rounded-md border border-slate-200 flex items-center px-4 h-9 space-x-1">
+            <button className="text-sm font-medium text-red-500 rounded-md border border-slate-200 flex items-center px-4 h-9 space-x-1">
               <Trash2 size={15} strokeWidth={2} />
               <span>Clear notes</span>
             </button>
@@ -59,11 +59,6 @@ const Body = () => {
           </div>
         </div>
         <div className="notes-list mt-9 mb-16 grid grid-cols-3 gap-4">
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
           <Card />
           <Card />
           <Card />
