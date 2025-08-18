@@ -58,7 +58,7 @@ const Body = () => {
             <Dropdown />
           </div>
         </div>
-        <div className="notes-list my-9 grid grid-cols-3 gap-4">
+        <div className="notes-list mt-9 mb-16 grid grid-cols-3 gap-4">
           <Card />
           <Card />
           <Card />
