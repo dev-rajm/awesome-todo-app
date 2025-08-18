@@ -4,27 +4,38 @@ import { useEffect, useRef, useState } from 'react';
 
 const FormInputs = () => {
   const textAreaRef = useRef(null);
-  const [value, setValue] = useState('');
+  const [desc, setDesc] = useState('');
+  const [title, setTitle] = useState('');
+  const [isDisable, setIsDisable] = useState(true);
+
+  useEffect(() => {
+    if (title.trim() != '' || desc.trim() != '') {
+      setIsDisable(false);
+    } else {
+      setIsDisable(true);
+    }
+  }, [title, desc]);
 
   useEffect(() => {
     if (!textAreaRef.current) return;
     textAreaRef.current.style.height = 'auto';
     textAreaRef.current.style.height = `${textAreaRef.current.scrollHeight}px`;
-  }, [value, textAreaRef]);
+  }, [desc, textAreaRef]);
 
   return (
     <div className="form-element">
       <input
         type="text"
         name="title"
+        onChange={e => setTitle(e.target.value)}
         className="w-full p-2.5 rounded-md text-sm font-semibold border border-slate-100 focus:outline-2 focus:outline-black focus:outline-offset-2"
         placeholder="Note title (optional)"
       />
       <div className="mb-6">
         <textarea
           ref={textAreaRef}
-          value={value}
-          onChange={e => setValue(e.target.value)}
+          value={desc}
+          onChange={e => setDesc(e.target.value)}
           rows={2}
           name="description"
           id="desc"
@@ -41,8 +52,11 @@ const FormInputs = () => {
 
       <div className="flex justify-end w-full space-x-2">
         <Dropdown />
-        <button className="bg-black px-3.5 h-9 flex gap-2 items-center text-[13px] rounded-md text-white font-medium">
-          <CirclePlus size={15} strokeWidth={2} />
+        <button
+          className="bg-black px-4 py-2 flex gap-3 items-center text-sm rounded-md text-white font-medium cursor-pointer disabled:bg-black/55 disabled:cursor-not-allowed"
+          disabled={isDisable}
+        >
+          <CirclePlus size={16} strokeWidth={2} />
           <span>Save Note</span>
         </button>
       </div>
