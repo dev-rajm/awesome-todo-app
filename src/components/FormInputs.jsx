@@ -7,9 +7,16 @@ const FormInputs = () => {
   const [desc, setDesc] = useState('');
   const [title, setTitle] = useState('');
 
+  // Save button disable logic
   const isDisable = useMemo(
     () => title.trim() === '' && desc.trim() === '',
     [title, desc]
+  );
+
+  // Word counter
+  const wordCount = useMemo(
+    () => desc.trim().split(/\s+/).filter(Boolean).length,
+    [desc]
   );
 
   useEffect(() => {
@@ -44,7 +51,7 @@ const FormInputs = () => {
           htmlFor="desc"
           className="text-[11px] flex justify-end text-slate-400 font-medium tracking-tight"
         >
-          0 words
+          {wordCount} words
         </label>
       </div>
 
