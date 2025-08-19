@@ -2,6 +2,7 @@ import { CirclePlus } from 'lucide-react';
 import Dropdown from './Dropdown';
 import { useMemo, useRef, useState } from 'react';
 import useAutoResizedTextArea from '../hooks/useAutoResizedTextArea';
+import useWordCount from '../hooks/useWordCount';
 
 const FormInputs = () => {
   const textAreaRef = useRef(null);
@@ -14,13 +15,10 @@ const FormInputs = () => {
     [title, desc]
   );
 
-  // Word counter
-  const wordCount = useMemo(
-    () => desc.trim().split(/\s+/).filter(Boolean).length,
-    [desc]
-  );
+  // Word counter hook
+  const wordCount = useWordCount(desc);
 
-  // Auto-resizer textarea
+  // Auto-resizer textarea hook
   useAutoResizedTextArea(textAreaRef, desc);
 
   return (
