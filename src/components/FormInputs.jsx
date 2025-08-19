@@ -1,8 +1,9 @@
-import { CirclePlus } from 'lucide-react';
-import Dropdown from './Dropdown';
 import { useMemo, useRef, useState } from 'react';
-import useAutoResizedTextArea from '../hooks/useAutoResizedTextArea';
+import { CirclePlus } from 'lucide-react';
+
 import useWordCount from '../hooks/useWordCount';
+import useAutoResizedTextArea from '../hooks/useAutoResizedTextArea';
+import Dropdown from './Dropdown';
 
 const FormInputs = () => {
   const textAreaRef = useRef(null);
