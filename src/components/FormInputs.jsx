@@ -1,14 +1,16 @@
-import { useMemo, useRef, useState } from 'react';
 import { CirclePlus } from 'lucide-react';
+import { useMemo, useRef, useState } from 'react';
 
-import useWordCount from '../hooks/useWordCount';
-import useAutoResizedTextArea from '../hooks/useAutoResizedTextArea';
 import Dropdown from './Dropdown';
+import useWordCount from '../hooks/useWordCount';
+import useLocalStorage from '../hooks/useLocalStorage';
+import useAutoResizedTextArea from '../hooks/useAutoResizedTextArea';
 
 const FormInputs = () => {
   const textAreaRef = useRef(null);
   const [desc, setDesc] = useState('');
   const [title, setTitle] = useState('');
+  const [notes, setNotes] = useLocalStorage('notes', []);
 
   // Button disable logic
   const isDisable = useMemo(
@@ -21,6 +23,19 @@ const FormInputs = () => {
 
   // Auto-resizer textarea hook
   useAutoResizedTextArea(textAreaRef, desc);
+
+  const handleSave = () => {
+    const newNote = {
+      id: Date.now(),
+      title,
+      desc,
+      createdAt: new Date().toISOString(),
+    };
+
+    setNotes([...notes, newNote]);
+    setTitle('');
+    setDesc('');
+  };
 
   return (
     <div className="max-w-3xl mx-auto w-full px-6">
@@ -56,6 +71,7 @@ const FormInputs = () => {
         <button
           className="bg-black px-4 py-2 flex gap-3 items-center text-sm rounded-md text-white font-medium cursor-pointer disabled:bg-black/55 disabled:cursor-not-allowed"
           disabled={isDisable}
+          onClick={handleSave}
         >
           <CirclePlus size={16} strokeWidth={2} />
           <span>Save Note</span>
