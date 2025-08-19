@@ -3,14 +3,14 @@ import { useMemo, useRef, useState } from 'react';
 
 import Dropdown from './Dropdown';
 import useWordCount from '../hooks/useWordCount';
-import useLocalStorage from '../hooks/useLocalStorage';
 import useAutoResizedTextArea from '../hooks/useAutoResizedTextArea';
+import { useNotes } from '../contexts/NotesContext';
 
 const FormInputs = () => {
   const textAreaRef = useRef(null);
   const [desc, setDesc] = useState('');
   const [title, setTitle] = useState('');
-  const [notes, setNotes] = useLocalStorage('notes', []);
+  const { notes, setNotes } = useNotes();
 
   // Button disable logic
   const isDisable = useMemo(
