@@ -23,7 +23,7 @@ const FormInputs = () => {
   useAutoResizedTextArea(textAreaRef, desc);
 
   return (
-    <div className="form-element">
+    <div className="max-w-3xl mx-auto w-full px-6">
       <input
         type="text"
         name="title"
