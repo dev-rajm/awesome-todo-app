@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { LayoutGrid, LayoutList, Tag, Trash2 } from 'lucide-react';
+import { Tag, Trash2 } from 'lucide-react';
 
 import Dropdown from './Dropdown';
 import Card from './Card.jsx';
