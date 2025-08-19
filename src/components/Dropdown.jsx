@@ -2,7 +2,7 @@ import { Check, ChevronDown } from 'lucide-react';
 
 const Dropdown = () => {
   return (
-    <div className="w-48 font-medium text-sm">
+    <div className="w-44 font-medium text-sm">
       <button className="flex justify-between items-center w-full border border-slate-200 px-3 py-2 rounded-md">
         <span>No category</span>
         <ChevronDown size={18} strokeWidth={1} />
