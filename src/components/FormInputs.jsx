@@ -1,13 +1,14 @@
 import { CirclePlus } from 'lucide-react';
 import Dropdown from './Dropdown';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
+import useAutoResizedTextArea from '../hooks/useAutoResizedTextArea';
 
 const FormInputs = () => {
   const textAreaRef = useRef(null);
   const [desc, setDesc] = useState('');
   const [title, setTitle] = useState('');
 
-  // Save button disable logic
+  // Button disable logic
   const isDisable = useMemo(
     () => title.trim() === '' && desc.trim() === '',
     [title, desc]
@@ -19,12 +20,8 @@ const FormInputs = () => {
     [desc]
   );
 
-  useEffect(() => {
-    if (!textAreaRef.current) return;
-    const el = textAreaRef.current;
-    el.style.height = 'auto';
-    el.style.height = `${textAreaRef.current.scrollHeight}px`;
-  }, [desc]);
+  // Auto-resizer textarea
+  useAutoResizedTextArea(textAreaRef, desc);
 
   return (
     <div className="form-element">
