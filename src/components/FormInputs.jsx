@@ -1,32 +1,30 @@
 import { CirclePlus } from 'lucide-react';
 import Dropdown from './Dropdown';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 
 const FormInputs = () => {
   const textAreaRef = useRef(null);
   const [desc, setDesc] = useState('');
   const [title, setTitle] = useState('');
-  const [isDisable, setIsDisable] = useState(true);
 
-  useEffect(() => {
-    if (title.trim() != '' || desc.trim() != '') {
-      setIsDisable(false);
-    } else {
-      setIsDisable(true);
-    }
-  }, [title, desc]);
+  const isDisable = useMemo(
+    () => title.trim() === '' && desc.trim() === '',
+    [title, desc]
+  );
 
   useEffect(() => {
     if (!textAreaRef.current) return;
-    textAreaRef.current.style.height = 'auto';
-    textAreaRef.current.style.height = `${textAreaRef.current.scrollHeight}px`;
-  }, [desc, textAreaRef]);
+    const el = textAreaRef.current;
+    el.style.height = 'auto';
+    el.style.height = `${textAreaRef.current.scrollHeight}px`;
+  }, [desc]);
 
   return (
     <div className="form-element">
       <input
         type="text"
         name="title"
+        value={title}
         onChange={e => setTitle(e.target.value)}
         className="w-full p-2.5 rounded-md text-sm font-semibold border border-slate-100 focus:outline-2 focus:outline-black focus:outline-offset-2"
         placeholder="Note title (optional)"
