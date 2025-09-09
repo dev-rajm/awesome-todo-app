@@ -60,7 +60,7 @@ const FormInputs = () => {
         ></textarea>
         <label
           htmlFor="desc"
-          className="text-[11px] flex justify-end text-slate-400 font-medium tracking-tight"
+          className="text-xs flex justify-end text-slate-400 font-medium tracking-tight"
         >
           {wordCount} words
         </label>
