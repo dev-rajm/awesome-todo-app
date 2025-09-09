@@ -47,7 +47,7 @@ const FormInputs = () => {
         className="w-full px-3 py-2.5 rounded-md text-sm font-semibold border border-slate-100 focus:outline-2 focus:outline-black focus:outline-offset-2"
         placeholder="Note title (optional)"
       />
-      <div className="mb-6">
+      <div className="mb-5">
         <textarea
           ref={textAreaRef}
           value={desc}
