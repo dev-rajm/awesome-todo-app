@@ -4,7 +4,7 @@ const Header = () => {
   return (
     <header className="flex justify-between items-center w-full mx-auto max-w-3xl flex-wrap gap-2 px-6 py-4 select-none">
       <div className="flex items-center gap-2">
-        <FilePenLine size={20} strokeWidth={1} />
+        <FilePenLine size={20} strokeWidth={1.5} />
         <h1 className="font-medium tracking-tight">Awesome Notes</h1>
       </div>
       <div>
