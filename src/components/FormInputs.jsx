@@ -44,7 +44,7 @@ const FormInputs = () => {
         name="title"
         value={title}
         onChange={e => setTitle(e.target.value)}
-        className="w-full p-2.5 rounded-md text-sm font-semibold border border-slate-100 focus:outline-2 focus:outline-black focus:outline-offset-2"
+        className="w-full px-3 py-2.5 rounded-md text-sm font-semibold border border-slate-100 focus:outline-2 focus:outline-black focus:outline-offset-2"
         placeholder="Note title (optional)"
       />
       <div className="mb-6">
@@ -56,7 +56,7 @@ const FormInputs = () => {
           name="description"
           id="desc"
           placeholder="Start typing your note..."
-          className="shadow w-full rounded-md border border-slate-100 focus:outline-black focus:outline-2 focus:outline-offset-2 p-2.5 mt-3 font-medium resize-none overflow-y-hidden placeholder:text-gray-400/85 focus:bg-slate-50"
+          className="shadow w-full rounded-md border border-slate-100 focus:outline-black focus:outline-2 focus:outline-offset-2 px-3 py-2.5 mt-3 font-medium resize-none overflow-y-hidden placeholder:text-gray-400/85 focus:bg-slate-50"
         ></textarea>
         <label
           htmlFor="desc"
