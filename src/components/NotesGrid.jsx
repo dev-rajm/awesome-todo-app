@@ -12,7 +12,7 @@ const NotesGrid = () => {
     <div className="max-w-5xl mx-auto w-full px-6 mt-12">
       <div className="flex justify-between">
         <div className="flex space-x-3 items-center">
-          <h2 className="text-lg font-medium">Your Notes</h2>
+          <h2 className="text-xl font-medium">Your Notes</h2>
           <LayoutToggle
             layout={layout}
             onToggle={() =>
