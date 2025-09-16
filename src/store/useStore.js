@@ -11,3 +11,10 @@ export const useWordCounterStore = create(set => ({
     });
   },
 }));
+
+export const useNoteTitleStore = create(set => ({
+  title: '',
+  setTitle: newTitle => {
+    set({ title: newTitle });
+  },
+}));

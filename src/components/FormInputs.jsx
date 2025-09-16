@@ -1,57 +1,18 @@
 import { CirclePlus } from 'lucide-react';
-import { useMemo, useRef, useState } from 'react';
 
 import Dropdown from './Dropdown';
-import useWordCount from '../hooks/useWordCount';
-import useLocalStorage from '../hooks/useLocalStorage';
-import useAutoResizedTextArea from '../hooks/useAutoResizedTextArea';
 
 const FormInputs = () => {
-  const textAreaRef = useRef(null);
-  const [desc, setDesc] = useState('');
-  const [title, setTitle] = useState('');
-  const [notes, setNotes] = useLocalStorage('notes', []);
-
-  // Button disable logic
-  const isDisable = useMemo(
-    () => title.trim() === '' && desc.trim() === '',
-    [title, desc]
-  );
-
-  // Word counter hook
-  const wordCount = useWordCount(desc);
-
-  // Auto-resizer textarea hook
-  useAutoResizedTextArea(textAreaRef, desc);
-
-  const handleSave = () => {
-    const newNote = {
-      id: Date.now(),
-      title,
-      desc,
-      createdAt: new Date().toISOString(),
-    };
-
-    setNotes([...notes, newNote]);
-    setTitle('');
-    setDesc('');
-  };
-
   return (
     <div className="max-w-3xl mx-auto w-full px-6">
       <input
         type="text"
         name="title"
-        value={title}
-        onChange={e => setTitle(e.target.value)}
         className="w-full px-3 py-2.5 rounded-md text-sm font-semibold border border-slate-100 focus:outline-2 focus:outline-black focus:outline-offset-2"
         placeholder="Note title (optional)"
       />
       <div className="mb-5">
         <textarea
-          ref={textAreaRef}
-          value={desc}
-          onChange={e => setDesc(e.target.value)}
           rows={2}
           name="description"
           id="desc"
@@ -62,17 +23,13 @@ const FormInputs = () => {
           htmlFor="desc"
           className="text-xs flex justify-end text-slate-400 font-medium tracking-tight"
         >
-          {wordCount} words
+          {0} words
         </label>
       </div>
 
       <div className="flex justify-end w-full space-x-2">
         <Dropdown />
-        <button
-          className="bg-black px-4 py-2 flex gap-3 items-center text-sm rounded-md text-white font-medium cursor-pointer disabled:bg-black/55 disabled:cursor-not-allowed"
-          disabled={isDisable}
-          onClick={handleSave}
-        >
+        <button className="bg-black px-4 py-2 flex gap-3 items-center text-sm rounded-md text-white font-medium cursor-pointer disabled:bg-black/55 disabled:cursor-not-allowed">
           <CirclePlus size={16} strokeWidth={2} />
           <span>Save Note</span>
         </button>
