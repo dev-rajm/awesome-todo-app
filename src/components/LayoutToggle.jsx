@@ -1,15 +1,16 @@
 import { LayoutGrid, LayoutList } from 'lucide-react';
+import useNoteStore from '../store/useStore';
 
-const LayoutToggle = ({ layout, onToggle }) => {
-  const isList = layout === 'list';
+const LayoutToggle = () => {
+  const { viewMode, toggleView } = useNoteStore();
   return (
     <button
-      onClick={onToggle}
-      aria-label={`Switch to ${isList ? 'gird' : 'list'} view`}
+      onClick={toggleView}
+      aria-label={`Switch to ${viewMode ? 'gird' : 'list'} view`}
       className="border border-slate-200 size-9 rounded flex justify-center items-center hover:bg-slate-100"
     >
       <span>
-        {isList ? (
+        {viewMode === 'list' ? (
           <LayoutGrid size={16} strokeWidth={2} />
         ) : (
           <LayoutList size={16} strokeWidth={2} />

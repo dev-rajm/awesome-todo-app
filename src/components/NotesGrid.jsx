@@ -1,24 +1,18 @@
-import { useState } from 'react';
 import { Tag, Trash2 } from 'lucide-react';
 
 import Dropdown from './Dropdown';
 import Card from './Card.jsx';
 import LayoutToggle from './LayoutToggle.jsx';
+import useNoteStore from '../store/useStore.js';
 
 const NotesGrid = () => {
-  const [layout, setLayout] = useState('grid');
-
+  const { viewMode } = useNoteStore();
   return (
     <div className="max-w-5xl mx-auto w-full px-6 mt-12">
       <div className="flex justify-between">
         <div className="flex space-x-3 items-center">
           <h2 className="text-xl font-medium">Your Notes</h2>
-          <LayoutToggle
-            layout={layout}
-            onToggle={() =>
-              setLayout(prev => (prev === 'grid' ? 'list' : 'grid'))
-            }
-          />
+          <LayoutToggle />
           <div className="flex items-center rounded-md border border-slate-200 h-9 px-3 space-x-1">
             <Tag size={16} strokeWidth={2} />
             <span className="text-sm font-semibold">Categories</span>
@@ -34,7 +28,7 @@ const NotesGrid = () => {
       </div>
       <div
         className={`notes-list mt-9 mb-16 ${
-          layout === 'grid'
+          viewMode === 'grid'
             ? 'grid grid-cols-3 gap-4'
             : 'flex flex-col space-y-4'
         }`}

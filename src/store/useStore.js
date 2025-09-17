@@ -7,6 +7,7 @@ const useNoteStore = create(
       title: '',
       description: '',
       wordCount: 0,
+      viewMode: 'grid',
       notes: [],
 
       setTitle: title => set({ title }),
@@ -18,6 +19,12 @@ const useNoteStore = create(
             : description.trim().split(/\s+/).length;
 
         set({ description, wordCount });
+      },
+
+      toggleView: () => {
+        set(state => ({
+          viewMode: state.viewMode === 'grid' ? 'list' : 'grid',
+        }));
       },
 
       saveNote: () => {
