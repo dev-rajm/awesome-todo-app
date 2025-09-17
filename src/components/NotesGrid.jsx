@@ -26,7 +26,7 @@ const NotesGrid = () => {
         <div className="flex items-center space-x-3">
           <button
             onClick={handleClear}
-            className="text-sm font-medium text-red-500 rounded-md border border-slate-200 flex items-center px-4 h-9 space-x-1"
+            className="text-sm font-medium text-red-500 rounded-md border border-slate-200 flex items-center px-4 h-9 space-x-1 cursor-pointer hover:bg-red-100/50"
           >
             <Trash2 size={16} strokeWidth={2} />
             <span>Clear notes</span>

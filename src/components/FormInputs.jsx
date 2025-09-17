@@ -29,7 +29,7 @@ const FormInputs = () => {
           value={description}
           onChange={e => setDescription(e.target.value)}
           placeholder="Start typing your note..."
-          className="shadow w-full rounded-md border border-slate-100 focus:outline-black focus:outline-2 focus:outline-offset-2 px-3 py-2.5 mt-3 font-medium resize-none overflow-y-hidden placeholder:text-gray-400/85 focus:bg-slate-50"
+          className="shadow w-full rounded-md border border-slate-100 focus:outline-black focus:outline-2 focus:outline-offset-2 px-3 py-2.5 mt-3 font-medium resize-none overflow-hidden placeholder:text-gray-400/85 focus:bg-slate-50"
         ></textarea>
         <p className="text-xs flex justify-end text-slate-400 font-medium tracking-tight">
           {wordCount} words
