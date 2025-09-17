@@ -1,20 +1,23 @@
 import { create } from 'zustand';
 
-export const useWordCounterStore = create(set => ({
-  text: '',
+const useNoteStore = create((set, get) => ({
+  title: '',
+  description: '',
   wordCount: 0,
-  setText: newText => {
-    const count = newText.trim().split(/\s+/).filter(Boolean).length;
-    set({
-      text: newText,
-      wordCount: newText ? count : 0,
-    });
+
+  setTitle: title => set({ title }),
+
+  setDescription: description => {
+    const wordCount =
+      description.trim() === '' ? 0 : description.trim().split(/\s+/).length;
+
+    set({ description, wordCount });
+  },
+
+  isSaveDisable: () => {
+    const { title, description } = get();
+    return title.trim() === '' || description.trim() === '';
   },
 }));
 
-export const useNoteTitleStore = create(set => ({
-  title: '',
-  setTitle: newTitle => {
-    set({ title: newTitle });
-  },
-}));
+export default useNoteStore;
