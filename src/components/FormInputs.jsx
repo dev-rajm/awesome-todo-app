@@ -10,6 +10,7 @@ const FormInputs = () => {
     wordCount,
     setTitle,
     setDescription,
+    saveNote,
     isSaveDisable,
   } = useNoteStore();
 
@@ -38,8 +39,9 @@ const FormInputs = () => {
       <div className="flex justify-end w-full space-x-2">
         <Dropdown />
         <button
-          className="bg-black px-4 py-2 flex gap-3 items-center text-sm rounded-md text-white font-medium cursor-pointer disabled:bg-black/55"
+          onClick={saveNote}
           disabled={isSaveDisable()}
+          className="bg-black px-4 py-2 flex gap-3 items-center text-sm rounded-md text-white font-medium cursor-pointer disabled:bg-black/55"
         >
           <CirclePlus size={16} strokeWidth={2} />
           <span>Save Note</span>

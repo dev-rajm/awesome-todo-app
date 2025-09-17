@@ -24,7 +24,7 @@ const useNoteStore = create(
         const { title, description, notes } = get();
         if (title.trim() && description.trim()) {
           const newNote = {
-            id: Date().now(),
+            id: new Date().toLocaleTimeString(),
             title,
             description,
           };
