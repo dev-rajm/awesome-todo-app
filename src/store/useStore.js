@@ -49,6 +49,8 @@ const useNoteStore = create(
         }
       },
 
+      clearNotes: () => set({ notes: [] }),
+
       isSaveDisable: () => {
         const { title, description } = get();
         return title.trim() === '' && description.trim() === '';

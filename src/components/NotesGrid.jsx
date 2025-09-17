@@ -6,7 +6,12 @@ import LayoutToggle from './LayoutToggle.jsx';
 import useNoteStore from '../store/useStore.js';
 
 const NotesGrid = () => {
-  const { viewMode, notes } = useNoteStore();
+  const { viewMode, notes, clearNotes } = useNoteStore();
+
+  function handleClear() {
+    confirm('Are you sure you want to delete all notes?') && clearNotes();
+  }
+
   return (
     <div className="max-w-5xl mx-auto w-full px-6 mt-12">
       <div className="flex justify-between">
@@ -19,7 +24,10 @@ const NotesGrid = () => {
           </div>
         </div>
         <div className="flex items-center space-x-3">
-          <button className="text-sm font-medium text-red-500 rounded-md border border-slate-200 flex items-center px-4 h-9 space-x-1">
+          <button
+            onClick={handleClear}
+            className="text-sm font-medium text-red-500 rounded-md border border-slate-200 flex items-center px-4 h-9 space-x-1"
+          >
             <Trash2 size={16} strokeWidth={2} />
             <span>Clear notes</span>
           </button>
