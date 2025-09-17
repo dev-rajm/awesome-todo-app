@@ -29,16 +29,15 @@ const useNoteStore = create(
 
       saveNote: () => {
         const { title, description, notes } = get();
-        if (title.trim() && description.trim()) {
+        if (title.trim() || description.trim()) {
           const newNote = {
             id: new Date().toLocaleTimeString(),
             title,
             description,
             createdAt: new Intl.DateTimeFormat('en-US', {
-              month: 'short',
-              day: 'numeric',
-              timeStyle: 'medium',
-            }),
+              dateStyle: 'medium',
+              timeStyle: 'short',
+            }).format(new Date()),
           };
 
           set({
