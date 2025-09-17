@@ -6,7 +6,7 @@ import LayoutToggle from './LayoutToggle.jsx';
 import useNoteStore from '../store/useStore.js';
 
 const NotesGrid = () => {
-  const { viewMode } = useNoteStore();
+  const { viewMode, notes } = useNoteStore();
   return (
     <div className="max-w-5xl mx-auto w-full px-6 mt-12">
       <div className="flex justify-between">
@@ -27,15 +27,26 @@ const NotesGrid = () => {
         </div>
       </div>
       <div
-        className={`notes-list mt-9 mb-16 ${
+        className={`notes-list mt-9 min-h-36 relative ${
           viewMode === 'grid'
             ? 'grid grid-cols-3 gap-4'
             : 'flex flex-col space-y-4'
         }`}
       >
-        <Card />
-        <Card />
-        <Card />
+        {notes.length > 0 ? (
+          notes.map(note => (
+            <Card
+              key={note.id}
+              title={note.title}
+              description={note.description}
+              createdAt={note.createdAt}
+            />
+          ))
+        ) : (
+          <div className="text-gray-400 text-center my-8 absolute left-0 right-0">
+            No saved notes yet. Create your first note above!
+          </div>
+        )}
       </div>
     </div>
   );

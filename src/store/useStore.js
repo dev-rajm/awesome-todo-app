@@ -34,6 +34,11 @@ const useNoteStore = create(
             id: new Date().toLocaleTimeString(),
             title,
             description,
+            createdAt: new Intl.DateTimeFormat('en-US', {
+              month: 'short',
+              day: 'numeric',
+              timeStyle: 'medium',
+            }),
           };
 
           set({
