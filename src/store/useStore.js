@@ -10,6 +10,12 @@ const useNoteStore = create(
       viewMode: 'grid',
       notes: [],
 
+      notificationState: null,
+      showNotification: (message, type = 'success') => {
+        set({ notificationState: { message, type } });
+        setTimeout(() => set({ notificationState: null }), 3000);
+      },
+
       setTitle: title => set({ title }),
 
       setDescription: description => {
@@ -28,7 +34,7 @@ const useNoteStore = create(
       },
 
       saveNote: () => {
-        const { title, description, notes } = get();
+        const { title, description, notes, showNotification } = get();
         if (title.trim() || description.trim()) {
           const newNote = {
             id: new Date().toLocaleTimeString(),
@@ -46,10 +52,13 @@ const useNoteStore = create(
             description: '',
             wordCount: 0,
           });
+          showNotification('Note saved successfully 🎉');
         }
       },
 
-      clearNotes: () => set({ notes: [] }),
+      clearNotes: () => {
+        set({ notes: [] }), get().showNotification('All notes cleared 🗑️');
+      },
 
       isSaveDisable: () => {
         const { title, description } = get();
