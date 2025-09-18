@@ -11,8 +11,8 @@ const NotesGrid = () => {
   const handleClear = () => {
     if (notes.length == 0)
       showNotification(
-        'No notes to clear',
-        'There are no notes to clear in the selected category'
+        'No notes to delete',
+        'There are no notes to delete in the selected category'
       );
     else confirm('Are you sure you want to delete all notes?') && clearNotes();
   };
