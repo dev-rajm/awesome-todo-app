@@ -66,6 +66,15 @@ const useNoteStore = create(
         showNotification('Notes cleared', 'Cleared all notes');
       },
 
+      deleteNote: id => {
+        const { showNotification } = get();
+
+        set(state => ({
+          notes: state.notes.filter(note => note.id !== id),
+        }));
+        showNotification('Note deleted', 'Your note has been deleted');
+      },
+
       isSaveDisable: () => {
         const { title, description } = get();
         return title.trim() === '' && description.trim() === '';

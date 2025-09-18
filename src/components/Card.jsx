@@ -1,6 +1,10 @@
-import { EllipsisVertical } from 'lucide-react';
+import { EllipsisVertical, Trash2 } from 'lucide-react';
 
-const Card = ({ title, description, createdAt }) => {
+import useNoteStore from '../store/useNoteStore';
+
+const Card = ({ id, title, description, createdAt }) => {
+  const { deleteNote } = useNoteStore();
+
   return (
     <div className="card relative border shadow border-slate-200 rounded-md px-3 py-4 h-full min-h-80">
       <div className="card-title mb-3">
@@ -14,6 +18,17 @@ const Card = ({ title, description, createdAt }) => {
         <span className="hover:bg-slate-100 mr-3 p-1.5 rounded">
           <EllipsisVertical size={18} strokeWidth={1} />
         </span>
+        <div
+          className="absolute right-3 -bottom-7 bg-white w-32 px-1 py-1 border border-slate-200 text-red-500 text-sm font-medium rounded-md shadow cursor-pointer"
+          onClick={deleteNote(id)}
+        >
+          <div className="px-2.5 py-1.5 rounded flex items-center space-x-1 hover:bg-gray-100">
+            <span>
+              <Trash2 size={16} strokeWidth={2} />
+            </span>
+            <span>Delete</span>
+          </div>
+        </div>
       </div>
     </div>
   );
