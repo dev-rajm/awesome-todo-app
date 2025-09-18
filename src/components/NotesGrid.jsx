@@ -8,9 +8,10 @@ import useNoteStore from '../store/useStore.js';
 const NotesGrid = () => {
   const { viewMode, notes, clearNotes } = useNoteStore();
 
-  function handleClear() {
-    confirm('Are you sure you want to delete all notes?') && clearNotes();
-  }
+  const handleClear = () => {
+    if (notes.length != 0)
+      confirm('Are you sure you want to delete all notes?') && clearNotes();
+  };
 
   return (
     <div className="max-w-5xl mx-auto w-full px-6 mt-12">
