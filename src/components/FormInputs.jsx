@@ -1,7 +1,7 @@
 import { CirclePlus } from 'lucide-react';
 
 import Dropdown from './Dropdown';
-import useNoteStore from '../store/useStore';
+import useNoteStore from '../store/useNoteStore';
 
 const FormInputs = () => {
   const {

@@ -13,8 +13,9 @@ const useNoteStore = create(
       notificationState: null,
       showNotification: (title, message) => {
         set({ notificationState: { title, message } });
-        setTimeout(() => set({ notificationState: null }), 3000);
+        setTimeout(() => set({ notificationState: null }), 5000);
       },
+      hideNotification: () => set({ notificationState: null }),
 
       setTitle: title => set({ title }),
 
@@ -52,12 +53,16 @@ const useNoteStore = create(
             description: '',
             wordCount: 0,
           });
-          showNotification('Note saved successfully 🎉');
+          showNotification(
+            'Note saved',
+            'Your note has been saved successfully'
+          );
         }
       },
 
       clearNotes: () => {
-        set({ notes: [] }), get().showNotification('All notes cleared 🗑️');
+        set({ notes: [] }),
+          get().showNotification('Notes cleared', 'Cleared all notes');
       },
 
       isSaveDisable: () => {

@@ -1,5 +1,5 @@
 import { LayoutGrid, LayoutList } from 'lucide-react';
-import useNoteStore from '../store/useStore';
+import useNoteStore from '../store/useNoteStore';
 
 const LayoutToggle = () => {
   const { viewMode, toggleView } = useNoteStore();

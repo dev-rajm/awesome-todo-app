@@ -3,7 +3,7 @@ import { Tag, Trash2 } from 'lucide-react';
 import Dropdown from './Dropdown';
 import Card from './Card.jsx';
 import LayoutToggle from './LayoutToggle.jsx';
-import useNoteStore from '../store/useStore.js';
+import useNoteStore from '../store/useNoteStore.js';
 
 const NotesGrid = () => {
   const { viewMode, notes, clearNotes } = useNoteStore();
