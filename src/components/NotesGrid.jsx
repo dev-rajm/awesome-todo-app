@@ -35,7 +35,7 @@ const NotesGrid = () => {
         </div>
       </div>
       <div
-        className={`notes-list mt-9 mb-16 min-h-36 relative ${
+        className={`notes-list mt-9 pb-16 min-h-36 relative ${
           viewMode === 'grid'
             ? 'grid grid-cols-3 gap-4'
             : 'flex flex-col space-y-4'
