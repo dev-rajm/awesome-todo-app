@@ -2,7 +2,7 @@ import { EllipsisVertical } from 'lucide-react';
 
 const Card = ({ title, description, createdAt }) => {
   return (
-    <div className="card relative border shadow border-slate-200 rounded-md p-3 h-full min-h-80">
+    <div className="card relative border shadow border-slate-200 rounded-md px-3 py-4 h-full min-h-80">
       <div className="card-title mb-3">
         <p className="font-medium">{title}</p>
         <p className="text-slate-400 text-xs">{createdAt}</p>
