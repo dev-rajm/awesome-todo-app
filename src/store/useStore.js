@@ -11,8 +11,8 @@ const useNoteStore = create(
       notes: [],
 
       notificationState: null,
-      showNotification: (message, type = 'success') => {
-        set({ notificationState: { message, type } });
+      showNotification: (title, message) => {
+        set({ notificationState: { title, message } });
         setTimeout(() => set({ notificationState: null }), 3000);
       },
 
