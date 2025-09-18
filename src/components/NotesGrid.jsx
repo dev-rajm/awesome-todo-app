@@ -6,11 +6,15 @@ import LayoutToggle from './LayoutToggle.jsx';
 import useNoteStore from '../store/useNoteStore.js';
 
 const NotesGrid = () => {
-  const { viewMode, notes, clearNotes } = useNoteStore();
+  const { viewMode, notes, clearNotes, showNotification } = useNoteStore();
 
   const handleClear = () => {
-    if (notes.length != 0)
-      confirm('Are you sure you want to delete all notes?') && clearNotes();
+    if (notes.length == 0)
+      showNotification(
+        'No notes to clear',
+        'There are no notes to clear in the selected category'
+      );
+    else confirm('Are you sure you want to delete all notes?') && clearNotes();
   };
 
   return (

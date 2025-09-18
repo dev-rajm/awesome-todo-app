@@ -61,8 +61,9 @@ const useNoteStore = create(
       },
 
       clearNotes: () => {
-        set({ notes: [] }),
-          get().showNotification('Notes cleared', 'Cleared all notes');
+        const { showNotification } = get();
+        set({ notes: [] });
+        showNotification('Notes cleared', 'Cleared all notes');
       },
 
       isSaveDisable: () => {
