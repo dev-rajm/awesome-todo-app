@@ -50,6 +50,7 @@ const NotesGrid = () => {
           notes.map(note => (
             <Card
               key={note.id}
+              id={note.id}
               title={note.title}
               description={note.description}
               createdAt={note.createdAt}
