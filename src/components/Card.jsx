@@ -1,7 +1,7 @@
+import { useState } from 'react';
 import { EllipsisVertical, Trash2 } from 'lucide-react';
 
 import useNoteStore from '../store/useNoteStore';
-import { useState } from 'react';
 
 const Card = ({ id, title, description, createdAt }) => {
   const [openMenu, setOpenMenu] = useState(false);
