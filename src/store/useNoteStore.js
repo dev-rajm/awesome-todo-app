@@ -13,6 +13,19 @@ const useNoteStore = create(
       categories: [],
 
       addCategories: (name, color) => {
+        const categories = get().categories;
+
+        const exists = categories.same(
+          cat => cat.name.toLowerCase() === name.toLowerCase()
+        );
+        if (exists) {
+          get().showNotification(
+            'Duplicate category',
+            'Category already exists'
+          );
+          return;
+        }
+
         const newCategory = {
           id: new Date().toLocaleDateString(),
           name,
@@ -22,6 +35,10 @@ const useNoteStore = create(
         set(state => ({
           categories: [...state.categories, newCategory],
         }));
+        get().showNotification(
+          'Category saved',
+          'Category has been saved successfully'
+        );
       },
 
       deleteCategory: id => {
