@@ -2,7 +2,7 @@ import { X } from 'lucide-react';
 
 import useNoteStore from '../store/useNoteStore.js';
 
-const NotificationPopUp = () => {
+const Notification = () => {
   const { notificationState, hideNotification } = useNoteStore();
 
   if (!notificationState) return null;
@@ -21,4 +21,4 @@ const NotificationPopUp = () => {
   );
 };
 
-export default NotificationPopUp;
+export default Notification;

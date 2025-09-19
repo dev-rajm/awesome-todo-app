@@ -1,13 +1,13 @@
 import FormInputs from './FormInputs';
 import NotesGrid from './NotesGrid';
-import NotificationPopUp from './NotificationPopUp';
+import Notification from './Notification';
 
 const Body = () => {
   return (
     <main className="max-w-5xl flex flex-col w-full mx-auto py-1">
       <FormInputs />
       <NotesGrid />
-      <NotificationPopUp />
+      <Notification />
     </main>
   );
 };
