@@ -9,8 +9,15 @@ const useNoteStore = create(
       wordCount: 0,
       viewMode: 'grid',
       selectedColor: null,
+      showCategoryManager: false,
       notes: [],
       categories: [],
+
+      isShowCategoryManager: () => {
+        set(state => ({
+          showCategoryManager: !state.showCategoryManager,
+        }));
+      },
 
       addCategories: (name, color) => {
         const categories = get().categories;

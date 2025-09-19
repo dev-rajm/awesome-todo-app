@@ -1,10 +1,19 @@
 import { Plus } from 'lucide-react';
 
 import ColorPicker from './ColorPicker';
+import useNoteStore from '../store/useNoteStore';
 
 const CategoryManager = () => {
+  const { showCategoryManager } = useNoteStore();
+
+  if (!showCategoryManager) return null;
+
   return (
-    <div className="fixed top-0 right-0 bg-white h-full w-sm p-6">
+    <div
+      className={`fixed top-0 right-0 bg-white h-full w-sm p-6 transition-transform duration-300 ease-in-out ${
+        showCategoryManager ? 'translate-x-0' : '-translate-x-full'
+      }`}
+    >
       <h2 className="font-semibold text-lg">Manage Categories</h2>
       <div className="space-y-2">
         <p className="font-semibold text-sm mt-4">Add New Category</p>
@@ -31,5 +40,4 @@ const CategoryManager = () => {
     </div>
   );
 };
-
 export default CategoryManager;
