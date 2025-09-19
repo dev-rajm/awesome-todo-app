@@ -8,7 +8,8 @@ const useNoteStore = create(
       description: '',
       wordCount: 0,
       viewMode: 'grid',
-      selectedColor: null,
+      categoryName: '',
+      selectedColor: '06d6a0',
       showCategoryManager: false,
       notes: [],
       categories: [],
@@ -19,11 +20,11 @@ const useNoteStore = create(
         }));
       },
 
-      addCategories: (name, color) => {
-        const categories = get().categories;
+      saveCategory: () => {
+        const { categories, selectedColor, categoryName } = get();
 
-        const exists = categories.same(
-          cat => cat.name.toLowerCase() === name.toLowerCase()
+        const exists = categories.some(
+          cat => cat.categoryName.toLowerCase() === categoryName.toLowerCase()
         );
         if (exists) {
           get().showNotification(
@@ -34,13 +35,15 @@ const useNoteStore = create(
         }
 
         const newCategory = {
-          id: new Date().toLocaleDateString(),
-          name,
-          color,
+          id: crypto.randomUUID(),
+          categoryName,
+          selectedColor,
         };
 
         set(state => ({
           categories: [...state.categories, newCategory],
+          categoryName: '',
+          selectedColor: '06d6a0',
         }));
         get().showNotification(
           'Category saved',
@@ -52,6 +55,10 @@ const useNoteStore = create(
         set(state => ({
           categories: state.categories.filter(cat => cat.id !== id),
         }));
+        get().showNotification(
+          'Category deleted',
+          'Category has been deleted successfully'
+        );
       },
 
       assignCategoryToNote: (noteId, categoryId) => {
@@ -61,6 +68,8 @@ const useNoteStore = create(
           ),
         }));
       },
+
+      setCategoryName: categoryName => set({ categoryName }),
 
       setSelectedColor: color => set({ selectedColor: color }),
 
@@ -92,7 +101,7 @@ const useNoteStore = create(
         const { title, description, notes, showNotification } = get();
         if (title.trim() || description.trim()) {
           const newNote = {
-            id: new Date().toLocaleTimeString(),
+            id: crypto.randomUUID(),
             title,
             description,
             createdAt: new Intl.DateTimeFormat('en-US', {
@@ -129,6 +138,11 @@ const useNoteStore = create(
       isSaveDisable: () => {
         const { title, description } = get();
         return title.trim() === '' && description.trim() === '';
+      },
+
+      isCategoryDisable: () => {
+        const { categoryName } = get();
+        return categoryName.trim() == '';
       },
     }),
     {

@@ -1,10 +1,18 @@
-import { Plus } from 'lucide-react';
+import { Plus, Trash2 } from 'lucide-react';
 
 import ColorPicker from './ColorPicker';
 import useNoteStore from '../store/useNoteStore';
 
 const CategoryManager = () => {
-  const { showCategoryManager } = useNoteStore();
+  const {
+    showCategoryManager,
+    categories,
+    categoryName,
+    setCategoryName,
+    saveCategory,
+    deleteCategory,
+    isCategoryDisable,
+  } = useNoteStore();
 
   return (
     <div
@@ -18,10 +26,16 @@ const CategoryManager = () => {
         <div className="flex space-x-2 w-full">
           <input
             type="text"
+            value={categoryName}
+            onChange={e => setCategoryName(e.target.value)}
             className="border border-slate-200 rounded-md h-10 px-3 w-full placeholder:text-sm placeholder:font-medium"
             placeholder="New category name"
           />
-          <button className="rounded-md bg-black text-white p-3">
+          <button
+            className="rounded-md bg-black text-white p-3 disabled:bg-black/50"
+            onClick={saveCategory}
+            disabled={isCategoryDisable()}
+          >
             <Plus size={16} />
           </button>
         </div>
@@ -29,11 +43,28 @@ const CategoryManager = () => {
       </div>
       <p className="text-sm font-semibold mt-8">Your Categories</p>
       <ul className="space-y-2 my-2">
-        <li className="w-full bg-slate-100/50 px-3 py-2 rounded-lg">Test</li>
-        <li className="w-full bg-slate-100/50 px-3 py-2 rounded-lg">Test</li>
-        <li className="w-full bg-slate-100/50 px-3 py-2 rounded-lg">Test</li>
-        <li className="w-full bg-slate-100/50 px-3 py-2 rounded-lg">Test</li>
-        <li className="w-full bg-slate-100/50 px-3 py-2 rounded-lg">Test</li>
+        {categories.map(cat => (
+          <li
+            key={cat.id}
+            className="w-full bg-slate-100/50 px-3 py-2 rounded-lg flex justify-between items-center"
+          >
+            <div className="flex gap-2 items-center">
+              <span
+                className="w-4 h-4 rounded-full"
+                style={{ backgroundColor: `#${cat.selectedColor}` }}
+              ></span>
+              <span>{cat.categoryName}</span>
+            </div>
+            <div className="flex items-center">
+              <button
+                className="text-red-500 cursor-pointer p-1 hover:bg-gray-100 rounded"
+                onClick={() => deleteCategory(cat.id)}
+              >
+                <Trash2 size={16} />
+              </button>
+            </div>
+          </li>
+        ))}
       </ul>
     </div>
   );

@@ -14,21 +14,29 @@ const colors = [
 
 const ColorPicker = () => {
   const { selectedColor, setSelectedColor } = useNoteStore();
+  console.log(selectedColor);
 
   return (
     <>
       <p className="text-sm text-gray-500">Select color:</p>
       <div className="flex flex-wrap gap-2.5">
-        {colors.map(color => (
-          <button
-            key={color}
-            onClick={() => setSelectedColor(color)}
-            style={{ backgroundColor: `#${color}` }}
-            className={`w-6 h-6 rounded-full outline-2 outline-offset-2 ${
-              selectedColor === color ? 'outline-black' : 'outline-transparent'
-            }`}
-          />
-        ))}
+        {colors.map(
+          color => (
+            console.log(color),
+            (
+              <button
+                key={color}
+                onClick={() => setSelectedColor(color)}
+                style={{ backgroundColor: `#${color}` }}
+                className={`w-6 h-6 rounded-full outline-2 outline-offset-2 ${
+                  selectedColor === color
+                    ? 'outline-black'
+                    : 'outline-transparent'
+                }`}
+              />
+            )
+          )
+        )}
       </div>
     </>
   );
