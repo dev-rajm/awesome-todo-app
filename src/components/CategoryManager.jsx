@@ -1,4 +1,5 @@
 import { Plus } from 'lucide-react';
+
 import ColorPicker from './ColorPicker';
 
 const CategoryManager = () => {

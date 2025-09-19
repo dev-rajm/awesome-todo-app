@@ -10,6 +10,33 @@ const useNoteStore = create(
       viewMode: 'grid',
       selectedColor: null,
       notes: [],
+      categories: [],
+
+      addCategories: (name, color) => {
+        const newCategory = {
+          id: new Date().toLocaleDateString(),
+          name,
+          color,
+        };
+
+        set(state => ({
+          categories: [...state.categories, newCategory],
+        }));
+      },
+
+      deleteCategory: id => {
+        set(state => ({
+          categories: state.categories.filter(cat => cat.id !== id),
+        }));
+      },
+
+      assignCategoryToNote: (noteId, categoryId) => {
+        set(state => ({
+          notes: state.notes.map(note =>
+            note.id === noteId ? { ...note, categoryId } : note
+          ),
+        }));
+      },
 
       setSelectedColor: color => set({ selectedColor: color }),
 
