@@ -1,22 +1,15 @@
 import useNoteStore from '../store/useNoteStore';
 
 const colors = [
-  'green',
-  'black',
-  'purple',
-  'pink',
-  'yellow',
-  'orange',
-  'red',
-  'blue',
-  'green',
-  'black',
-  'purple',
-  'pink',
-  'yellow',
-  'orange',
-  'red',
-  'blue',
+  '06d6a0',
+  'ffd166',
+  '62b6cb',
+  'ff8fab',
+  'a7c957',
+  'faa307',
+  'c77dff',
+  'e5383b',
+  'b8c0ff',
 ];
 
 const ColorPicker = () => {
@@ -30,7 +23,7 @@ const ColorPicker = () => {
           <button
             key={color}
             onClick={() => setSelectedColor(color)}
-            style={{ backgroundColor: color }}
+            style={{ backgroundColor: `#${color}` }}
             className={`w-6 h-6 rounded-full outline-2 outline-offset-2 ${
               selectedColor === color ? 'outline-black' : 'outline-transparent'
             }`}
