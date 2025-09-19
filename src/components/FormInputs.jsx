@@ -7,9 +7,8 @@ const FormInputs = () => {
   const {
     title,
     description,
+    updateField,
     wordCount,
-    setTitle,
-    setDescription,
     saveNote,
     isSaveDisable,
   } = useNoteStore();
@@ -19,7 +18,7 @@ const FormInputs = () => {
       <input
         type="text"
         value={title}
-        onChange={e => setTitle(e.target.value)}
+        onChange={e => updateField('title', e.target.value)}
         className="w-full px-3 py-2.5 rounded-md text-sm font-semibold border border-slate-100 focus:outline-2 focus:outline-black focus:outline-offset-2"
         placeholder="Note title (optional)"
       />
@@ -27,7 +26,7 @@ const FormInputs = () => {
         <textarea
           rows={2}
           value={description}
-          onChange={e => setDescription(e.target.value)}
+          onChange={e => updateField('description', e.target.value)}
           placeholder="Start typing your note..."
           className="shadow w-full rounded-md border border-slate-100 focus:outline-black focus:outline-2 focus:outline-offset-2 px-3 py-2.5 mt-3 font-medium resize-none overflow-hidden placeholder:text-gray-400/85 focus:bg-slate-50"
         ></textarea>

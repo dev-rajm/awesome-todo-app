@@ -6,17 +6,12 @@ import LayoutToggle from './LayoutToggle.jsx';
 import useNoteStore from '../store/useNoteStore.js';
 
 const NotesGrid = () => {
-  const {
-    viewMode,
-    notes,
-    clearNotes,
-    showNotification,
-    isShowCategoryManager,
-  } = useNoteStore();
+  const { viewMode, notes, clearNotes, notify, toggleCategoryManager } =
+    useNoteStore();
 
   const handleClear = () => {
     if (notes.length == 0)
-      showNotification(
+      notify(
         'No notes to delete',
         'There are no notes to delete in the selected category'
       );
@@ -31,7 +26,7 @@ const NotesGrid = () => {
           <LayoutToggle />
           <button
             className="flex items-center rounded-md border border-slate-200 h-9 px-3 space-x-1 cursor-pointer"
-            onClick={isShowCategoryManager}
+            onClick={toggleCategoryManager}
           >
             <Tag size={16} strokeWidth={2} />
             <span className="text-sm font-semibold">Categories</span>

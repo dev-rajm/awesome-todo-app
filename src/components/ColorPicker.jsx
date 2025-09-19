@@ -13,7 +13,7 @@ const colors = [
 ];
 
 const ColorPicker = () => {
-  const { selectedColor, setSelectedColor } = useNoteStore();
+  const { selectedColor, updateField } = useNoteStore();
 
   return (
     <>
@@ -22,7 +22,7 @@ const ColorPicker = () => {
         {colors.map(color => (
           <button
             key={color}
-            onClick={() => setSelectedColor(color)}
+            onClick={() => updateField('selectedColor', color)}
             style={{ backgroundColor: `#${color}` }}
             className={`w-6 h-6 rounded-full outline-2 outline-offset-2 ${
               selectedColor === color ? 'outline-black' : 'outline-transparent'

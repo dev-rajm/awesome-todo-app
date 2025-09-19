@@ -5,10 +5,10 @@ import useNoteStore from '../store/useNoteStore';
 
 const CategoryManager = () => {
   const {
+    updateField,
     showCategoryManager,
     categories,
     categoryName,
-    setCategoryName,
     saveCategory,
     deleteCategory,
     isCategoryDisable,
@@ -27,7 +27,7 @@ const CategoryManager = () => {
           <input
             type="text"
             value={categoryName}
-            onChange={e => setCategoryName(e.target.value)}
+            onChange={e => updateField('categoryName', e.target.value)}
             className="border border-slate-200 rounded-md h-10 px-3 w-full placeholder:text-sm placeholder:font-medium"
             placeholder="New category name"
           />

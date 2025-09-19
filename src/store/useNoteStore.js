@@ -13,13 +13,18 @@ const useNoteStore = create(
       showCategoryManager: false,
       notes: [],
       categories: [],
+      notificationState: null,
 
-      isShowCategoryManager: () => {
+      updateField: (field, value) => set({ [field]: value }),
+
+      // toggle category manager view
+      toggleCategoryManager: () => {
         set(state => ({
           showCategoryManager: !state.showCategoryManager,
         }));
       },
 
+      // add category
       saveCategory: () => {
         const { categories, selectedColor, categoryName } = get();
 
@@ -27,10 +32,7 @@ const useNoteStore = create(
           cat => cat.categoryName.toLowerCase() === categoryName.toLowerCase()
         );
         if (exists) {
-          get().showNotification(
-            'Duplicate category',
-            'Category already exists'
-          );
+          get().notify('Duplicate category', 'Category already exists');
           return;
         }
 
@@ -45,22 +47,21 @@ const useNoteStore = create(
           categoryName: '',
           selectedColor: '06d6a0',
         }));
-        get().showNotification(
-          'Category saved',
-          'Category has been saved successfully'
-        );
+        get().notify('Category saved', 'Category has been saved successfully');
       },
 
+      // delete category
       deleteCategory: id => {
         set(state => ({
           categories: state.categories.filter(cat => cat.id !== id),
         }));
-        get().showNotification(
+        get().notify(
           'Category deleted',
           'Category has been deleted successfully'
         );
       },
 
+      // assign category to note
       assignCategoryToNote: (noteId, categoryId) => {
         set(state => ({
           notes: state.notes.map(note =>
@@ -69,36 +70,9 @@ const useNoteStore = create(
         }));
       },
 
-      setCategoryName: categoryName => set({ categoryName }),
-
-      setSelectedColor: color => set({ selectedColor: color }),
-
-      notificationState: null,
-      showNotification: (title, message) => {
-        set({ notificationState: { title, message } });
-        setTimeout(() => set({ notificationState: null }), 5000);
-      },
-      hideNotification: () => set({ notificationState: null }),
-
-      setTitle: title => set({ title }),
-
-      setDescription: description => {
-        const wordCount =
-          description.trim() === ''
-            ? 0
-            : description.trim().split(/\s+/).length;
-
-        set({ description, wordCount });
-      },
-
-      toggleView: () => {
-        set(state => ({
-          viewMode: state.viewMode === 'grid' ? 'list' : 'grid',
-        }));
-      },
-
+      // save note
       saveNote: () => {
-        const { title, description, notes, showNotification } = get();
+        const { title, description, notes } = get();
         if (title.trim() || description.trim()) {
           const newNote = {
             id: crypto.randomUUID(),
@@ -116,37 +90,61 @@ const useNoteStore = create(
             description: '',
             wordCount: 0,
           });
-          showNotification(
-            'Note saved',
-            'Your note has been saved successfully'
-          );
+          get().notify('Note saved', 'Your note has been saved successfully');
         }
       },
 
-      clearNotes: () => {
-        set({ notes: [] });
-        get().showNotification('Notes cleared', 'Cleared all notes');
-      },
-
+      // delete note
       deleteNote: id => {
         set(state => ({
           notes: state.notes.filter(note => note.id !== id),
         }));
-        get().showNotification('Note deleted', 'Your note has been deleted');
+        get().notify('Note deleted', 'Your note has been deleted');
       },
 
+      // clear all notes
+      clearNotes: () => {
+        set({ notes: [] });
+        get().notify('Notes cleared', 'Cleared all notes');
+      },
+
+      // set description
+      setDescription: description => {
+        const wordCount =
+          description.trim() === ''
+            ? 0
+            : description.trim().split(/\s+/).length;
+
+        set({ description, wordCount });
+      },
+
+      // toggle notes view
+      toggleView: () => {
+        set(state => ({
+          viewMode: state.viewMode === 'grid' ? 'list' : 'grid',
+        }));
+      },
+
+      // add note button
       isSaveDisable: () => {
         const { title, description } = get();
         return title.trim() === '' && description.trim() === '';
       },
 
-      isCategoryDisable: () => {
-        const { categoryName } = get();
-        return categoryName.trim() == '';
+      // add category button
+      isCategoryDisable: () => get().categoryName.trim() === '',
+
+      // notification
+      notify: (title, message, duration = 5000) => {
+        set({ notificationState: { title, message } });
+        setTimeout(() => set({ notificationState: null }), duration);
       },
+
+      // hide notification popup
+      hideNotification: () => set({ notificationState: null }),
     }),
     {
-      name: 'notes-storage', // key in localstorage
+      name: 'notes-storage',
     }
   )
 );
