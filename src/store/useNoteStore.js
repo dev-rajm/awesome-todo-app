@@ -8,7 +8,10 @@ const useNoteStore = create(
       description: '',
       wordCount: 0,
       viewMode: 'grid',
+      selectedColor: null,
       notes: [],
+
+      setSelectedColor: color => set({ selectedColor: color }),
 
       notificationState: null,
       showNotification: (title, message) => {
