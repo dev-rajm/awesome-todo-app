@@ -6,12 +6,10 @@ import useNoteStore from '../store/useNoteStore';
 const CategoryManager = () => {
   const { showCategoryManager } = useNoteStore();
 
-  if (!showCategoryManager) return null;
-
   return (
     <div
-      className={`fixed top-0 right-0 bg-white h-full w-sm p-6 transition-transform duration-300 ease-in-out ${
-        showCategoryManager ? 'translate-x-0' : '-translate-x-full'
+      className={`fixed top-0 right-0 bg-white h-full w-sm p-6 transform transition-transform duration-500 z-50 ease-in-out ${
+        showCategoryManager ? 'translate-x-0' : 'translate-x-full'
       }`}
     >
       <h2 className="font-semibold text-lg">Manage Categories</h2>

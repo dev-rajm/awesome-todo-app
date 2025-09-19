@@ -7,7 +7,7 @@ const Overlay = () => {
     <>
       {showCategoryManager && (
         <div
-          className="fixed inset-0 bg-black/80 bg-opacity-50 transition-opacity duration-300"
+          className="fixed inset-0 bg-black/80 bg-opacity-50 transition-opacity duration-500 z-40"
           onClick={isShowCategoryManager}
         ></div>
       )}
