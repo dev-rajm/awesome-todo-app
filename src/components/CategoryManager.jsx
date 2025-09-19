@@ -6,7 +6,7 @@ const CategoryManager = () => {
     <div className="fixed top-0 right-0 bg-white h-full w-sm p-6">
       <h2 className="font-semibold text-lg">Manage Categories</h2>
       <div className="space-y-2">
-        <p className="font-medium text-sm mt-4">Add New Category</p>
+        <p className="font-semibold text-sm mt-4">Add New Category</p>
         <div className="flex space-x-2 w-full">
           <input
             type="text"
@@ -19,9 +19,13 @@ const CategoryManager = () => {
         </div>
         <ColorPicker />
       </div>
-      <p>Your Categories</p>
-      <ul>
-        <li>Test</li>
+      <p className="text-sm font-semibold mt-8">Your Categories</p>
+      <ul className="space-y-2 my-2">
+        <li className="w-full bg-slate-100/50 px-3 py-2 rounded-lg">Test</li>
+        <li className="w-full bg-slate-100/50 px-3 py-2 rounded-lg">Test</li>
+        <li className="w-full bg-slate-100/50 px-3 py-2 rounded-lg">Test</li>
+        <li className="w-full bg-slate-100/50 px-3 py-2 rounded-lg">Test</li>
+        <li className="w-full bg-slate-100/50 px-3 py-2 rounded-lg">Test</li>
       </ul>
     </div>
   );
