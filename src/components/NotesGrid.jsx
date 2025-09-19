@@ -29,15 +29,13 @@ const NotesGrid = () => {
         <div className="flex space-x-3 items-center">
           <h2 className="text-xl font-medium">Your Notes</h2>
           <LayoutToggle />
-          <div className="flex items-center rounded-md border border-slate-200 h-9 px-3 space-x-1">
+          <button
+            className="flex items-center rounded-md border border-slate-200 h-9 px-3 space-x-1 cursor-pointer"
+            onClick={isShowCategoryManager}
+          >
             <Tag size={16} strokeWidth={2} />
-            <span
-              className="text-sm font-semibold"
-              onClick={isShowCategoryManager}
-            >
-              Categories
-            </span>
-          </div>
+            <span className="text-sm font-semibold">Categories</span>
+          </button>
         </div>
         <div className="flex items-center space-x-3">
           <button
