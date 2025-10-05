@@ -64,14 +64,6 @@ const useNoteStore = create(
         );
       },
 
-      assignCategoryToNote: (noteId, categoryId) => {
-        set(state => ({
-          notes: state.notes.map(note =>
-            note.id === noteId ? { ...note, categoryId } : note
-          ),
-        }));
-      },
-
       setCategoryName: categoryName => set({ categoryName }),
 
       setSelectedColor: color => set({ selectedColor: color }),
