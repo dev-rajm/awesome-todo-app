@@ -93,12 +93,13 @@ const useNoteStore = create(
       },
 
       saveNote: () => {
-        const { title, description, notes, showNotification } = get();
+        const { title, description, notes, showNotification, selectedCategoryId } = get();
         if (title.trim() || description.trim()) {
           const newNote = {
             id: crypto.randomUUID(),
             title,
             description,
+            categoryId: selectedCategoryId || "",
             createdAt: new Intl.DateTimeFormat('en-US', {
               dateStyle: 'medium',
               timeStyle: 'short',
@@ -110,6 +111,7 @@ const useNoteStore = create(
             title: '',
             description: '',
             wordCount: 0,
+            selectedCategoryId: "",
           });
           showNotification(
             'Note saved',
