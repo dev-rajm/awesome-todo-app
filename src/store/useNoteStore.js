@@ -9,10 +9,13 @@ const useNoteStore = create(
       wordCount: 0,
       viewMode: 'grid',
       categoryName: '',
+      selectedCategoryId: '',
       selectedColor: '06d6a0',
       showCategoryManager: false,
       notes: [],
       categories: [],
+
+      setSelectedCategoryId: (id) => set({selectedCategoryId: id}),
 
       isShowCategoryManager: () => {
         set(state => ({
