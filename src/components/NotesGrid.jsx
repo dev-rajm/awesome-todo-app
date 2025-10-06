@@ -9,6 +9,7 @@ const NotesGrid = () => {
   const {
     viewMode,
     notes,
+    categories,
     clearNotes,
     showNotification,
     isShowCategoryManager,
@@ -18,7 +19,7 @@ const NotesGrid = () => {
     if (notes.length == 0)
       showNotification(
         'No notes to delete',
-        'There are no notes to delete in the selected category'
+        'There are no notes to delete in the selected category',
       );
     else confirm('Are you sure you want to delete all notes?') && clearNotes();
   };
@@ -49,22 +50,27 @@ const NotesGrid = () => {
         </div>
       </div>
       <div
-        className={`notes-list mt-9 pb-16 min-h-36 relative ${
-          viewMode === 'grid'
+        className={`notes-list mt-9 pb-16 min-h-36 relative ${viewMode === 'grid'
             ? 'grid grid-cols-3 gap-4'
             : 'flex flex-col space-y-4'
-        }`}
+          }`}
       >
         {notes.length > 0 ? (
-          notes.map(note => (
-            <Card
-              key={note.id}
-              id={note.id}
-              title={note.title}
-              description={note.description}
-              createdAt={note.createdAt}
-            />
-          ))
+          notes.map(note => {
+            const cat = categories.find(c => c.id === note.categoryId);
+            console.log(cat);
+            return (
+              <Card
+                key={note.id}
+                id={note.id}
+                title={note.title}
+                description={note.description}
+                createdAt={note.createdAt}
+                catName={cat?.categoryName}
+                borderColor={cat?.selectedColor}
+              />
+            );
+          })
         ) : (
           <div className="text-gray-400 text-center my-8 absolute left-0 right-0">
             No saved notes yet. Create your first note above!
