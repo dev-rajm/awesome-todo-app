@@ -4,51 +4,59 @@ import { useState } from 'react';
 import useNoteStore from '../store/useNoteStore';
 
 const Dropdown = () => {
-  const { categories, setSelectedCategoryId } = useNoteStore();
-  const [selectedValue, setSeletedValue] = useState('');
   const [isOpen, setIsOpen] = useState(false);
+  const { categories, selectedCategoryId, setSelectedCategoryId } =
+    useNoteStore();
 
-  console.log(categories);
+  const selectedCategory = categories.find(
+    cat => cat.id === selectedCategoryId,
+  );
+
+  const handleSelect = id => {
+    setSelectedCategoryId(id);
+    setIsOpen(false);
+  };
 
   return (
     <div className="w-44 font-medium text-sm relative">
-      <div
-        className="flex justify-between items-center w-full border border-slate-200 px-3 py-2 rounded-md cursor-pointer focus:outline-2 outline-offset-2"
+      <button
+        className="flex justify-between items-center w-full border border-slate-200 px-3 py-2 rounded-md cursor-pointer"
         onClick={() => setIsOpen(prev => !prev)}
       >
-        {selectedValue ? selectedValue : 'No category'}
+        <span>
+          {selectedCategory ? selectedCategory.categoryName : 'No category'}
+        </span>
         <ChevronDown size={18} strokeWidth={1} />
-      </div>
+      </button>
       {isOpen && (
-        <ul className="absolute space-y-1 bg-white w-full rounded-md px-2 py-1 transition duration-300 ease-in-out">
-          <li
-            className="hover:bg-slate-100 p-2 rounded cursor-pointer"
-            onClick={() => {
-              setSelectedCategoryId(null);
-              setSeletedValue(null);
-              setIsOpen(false);
-            }}
-          >
-            No category
-          </li>
-          {categories.map(cat => (
+        <div
+          className={`absolute top-11 left-0 z-50 bg-white w-full rounded-md transition-transform origin-top duration-300 shadow-md border border-slate-200 overflow-hidden ${isOpen ? '-translate-y-1' : 'translate-y-0'}`}
+        >
+          <ul className="list-none m-0 p-1 space-y-1">
             <li
               className="hover:bg-slate-100 p-2 rounded cursor-pointer flex items-center space-x-2"
-              key={cat.id}
-              onClick={() => {
-                setSelectedCategoryId(cat.id);
-                setSeletedValue(cat.categoryName);
-                setIsOpen(false);
-              }}
+              onClick={() => handleSelect('')}
             >
-              <span
-                className="w-4 h-4 rounded-full"
-                style={{ backgroundColor: `#${cat.selectedColor}` }}
-              ></span>
-              <span>{cat.categoryName}</span>
+              {selectedCategoryId === '' && <Check size={14} />}
+              <span>No category</span>
             </li>
-          ))}
-        </ul>
+
+            {categories.map(cat => (
+              <li
+                className="hover:bg-slate-100 p-2 rounded cursor-pointer flex items-center space-x-2"
+                key={cat.id}
+                onClick={() => handleSelect(cat.id)}
+              >
+                {selectedCategoryId === cat.id && <Check size={14} />}
+                <span
+                  className="w-4 h-4 rounded-full"
+                  style={{ backgroundColor: `#${cat.selectedColor}` }}
+                ></span>
+                <span>{cat.categoryName}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
       )}
     </div>
   );
