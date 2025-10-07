@@ -55,9 +55,19 @@ const useNoteStore = create(
       },
 
       deleteCategory: id => {
-        set(state => ({
-          categories: state.categories.filter(cat => cat.id !== id),
-        }));
+        set(state => {
+          const updatedCategories = state.categories.filter(
+            cat => cat.id !== id,
+          );
+          const updatedNotes = state.notes.map(note =>
+            note.categoryId === id ? { ...note, categoryId: null } : note,
+          );
+
+          return {
+            categories: updatedCategories,
+            notes: updatedNotes,
+          };
+        });
         get().showNotification(
           'Category deleted',
           'Category has been deleted successfully',
