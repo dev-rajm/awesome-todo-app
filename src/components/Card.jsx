@@ -8,7 +8,7 @@ const Card = ({ id, title, description, catName, borderColor, createdAt }) => {
   const { deleteNote } = useNoteStore();
 
   return (
-    <div className={`card relative border border-slate-200 shadow rounded-md px-3 py-4 h-full min-h-80`} style={{borderColor: `#${borderColor}`}}>
+    <div className={`card relative border-2 border-slate-200 shadow rounded-md px-3 py-4 h-full min-h-80`} style={{borderColor: `#${borderColor}`}}>
       <div className="card-title mb-3">
         <p className="font-medium">{title}</p>
         <p className="text-slate-400 text-xs">{createdAt}</p>
@@ -17,7 +17,7 @@ const Card = ({ id, title, description, catName, borderColor, createdAt }) => {
         <p className="text-sm">{description}</p>
       </div>
       <div className="card-footer bg-gray-50 rounded-b-md px-3 flex justify-between items-center absolute h-14 border-t border-t-slate-200 bottom-0 left-0 right-0">
-        <span className="text-xs px-2 py-0.5 rounded-xl" style={{backgroundColor: `#${borderColor}`}}>{catName}</span>
+        <span className="text-xs px-2 py-0.5 rounded-xl text-slate-800" style={{backgroundColor: `#${borderColor}`}}>{catName}</span>
         <span
           className="hover:bg-slate-100 p-1.5 rounded"
           onClick={() => setOpenMenu(prev => !prev)}
