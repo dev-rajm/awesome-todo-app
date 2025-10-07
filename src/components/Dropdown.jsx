@@ -1,12 +1,24 @@
 import { Check, ChevronDown } from 'lucide-react';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import useNoteStore from '../store/useNoteStore';
 
 const Dropdown = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [open, setOpen] = useState(false);
   const { categories, selectedCategoryId, setSelectedCategoryId } =
     useNoteStore();
+
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = e => {
+      if (ref.current && !ref.current.contains(e.target)) {
+        setOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   const selectedCategory = categories.find(
     cat => cat.id === selectedCategoryId,
@@ -14,23 +26,23 @@ const Dropdown = () => {
 
   const handleSelect = id => {
     setSelectedCategoryId(id);
-    setIsOpen(false);
+    setOpen(false);
   };
 
   return (
-    <div className="w-44 font-medium text-sm relative">
+    <div className="w-44 font-medium text-sm relative" ref={ref}>
       <button
         className="flex justify-between items-center w-full border border-slate-200 px-3 py-2 rounded-md cursor-pointer"
-        onClick={() => setIsOpen(prev => !prev)}
+        onClick={() => setOpen(prev => !prev)}
       >
         <span>
           {selectedCategory ? selectedCategory.categoryName : 'No category'}
         </span>
         <ChevronDown size={18} strokeWidth={1} />
       </button>
-      {isOpen && (
+      {open && (
         <div
-          className={`absolute top-11 left-0 z-50 bg-white w-full rounded-md transition-transform origin-top duration-300 shadow-md border border-slate-200 overflow-hidden ${isOpen ? '-translate-y-1' : 'translate-y-0'}`}
+          className={`absolute top-11 left-0 z-50 bg-white w-full rounded-md transition-transform origin-top duration-300 shadow-md border border-slate-200 overflow-hidden ${open ? '-translate-y-1' : 'translate-y-0'}`}
         >
           <ul className="list-none m-0 p-1 space-y-1">
             <li

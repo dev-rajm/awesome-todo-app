@@ -8,7 +8,10 @@ const Card = ({ id, title, description, catName, borderColor, createdAt }) => {
   const { deleteNote } = useNoteStore();
 
   return (
-    <div className={`card relative border-2 border-slate-200 shadow rounded-md px-3 py-4 h-full min-h-80`} style={{borderColor: `#${borderColor}`}}>
+    <div
+      className={`card relative border-2 border-slate-200 shadow rounded-md px-3 py-4 h-full min-h-80`}
+      style={{ borderColor: `#${borderColor}` }}
+    >
       <div className="card-title mb-3">
         <p className="font-medium">{title}</p>
         <p className="text-slate-400 text-xs">{createdAt}</p>
@@ -17,7 +20,12 @@ const Card = ({ id, title, description, catName, borderColor, createdAt }) => {
         <p className="text-sm">{description}</p>
       </div>
       <div className="card-footer bg-gray-50 rounded-b-md px-3 flex justify-between items-center absolute h-14 border-t border-t-slate-200 bottom-0 left-0 right-0">
-        <span className="text-xs px-2 py-0.5 rounded-xl text-slate-800" style={{backgroundColor: `#${borderColor}`}}>{catName}</span>
+        <span
+          className="text-xs px-2 py-0.5 rounded-xl text-slate-800"
+          style={{ backgroundColor: `#${borderColor}` }}
+        >
+          {catName}
+        </span>
         <span
           className="hover:bg-slate-100 p-1.5 rounded"
           onClick={() => setOpenMenu(prev => !prev)}
@@ -27,13 +35,13 @@ const Card = ({ id, title, description, catName, borderColor, createdAt }) => {
 
         {openMenu && (
           <div
-            className="absolute right-3 -bottom-7 bg-white w-32 px-1 py-1 border border-slate-200 text-red-500 text-sm font-medium rounded-md shadow cursor-pointer transition-all duration-300"
+            className="absolute z-[999] right-3 -bottom-7 bg-white w-32 px-1 py-1 border border-slate-200 text-red-500 text-sm font-medium rounded-md shadow cursor-pointer transition-all duration-300"
             onClick={() => {
               deleteNote(id);
               setOpenMenu(false);
             }}
           >
-            <div className="px-2.5 py-1.5 rounded flex items-center space-x-1 hover:bg-gray-100">
+            <div className="px-2.5 py-1.5 relative z-50 rounded flex items-center space-x-1 hover:bg-gray-100">
               <span>
                 <Trash2 size={16} strokeWidth={2} />
               </span>
