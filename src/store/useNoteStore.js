@@ -15,7 +15,7 @@ const useNoteStore = create(
       notes: [],
       categories: [],
 
-      setSelectedCategoryId: (id) => set({selectedCategoryId: id}),
+      setSelectedCategoryId: id => set({ selectedCategoryId: id }),
 
       isShowCategoryManager: () => {
         set(state => ({
@@ -27,12 +27,12 @@ const useNoteStore = create(
         const { categories, selectedColor, categoryName } = get();
 
         const exists = categories.some(
-          cat => cat.categoryName.toLowerCase() === categoryName.toLowerCase()
+          cat => cat.categoryName.toLowerCase() === categoryName.toLowerCase(),
         );
         if (exists) {
           get().showNotification(
             'Duplicate category',
-            'Category already exists'
+            'Category already exists',
           );
           return;
         }
@@ -50,7 +50,7 @@ const useNoteStore = create(
         }));
         get().showNotification(
           'Category saved',
-          'Category has been saved successfully'
+          'Category has been saved successfully',
         );
       },
 
@@ -60,7 +60,7 @@ const useNoteStore = create(
         }));
         get().showNotification(
           'Category deleted',
-          'Category has been deleted successfully'
+          'Category has been deleted successfully',
         );
       },
 
@@ -93,13 +93,19 @@ const useNoteStore = create(
       },
 
       saveNote: () => {
-        const { title, description, notes, showNotification, selectedCategoryId } = get();
+        const {
+          title,
+          description,
+          notes,
+          showNotification,
+          selectedCategoryId,
+        } = get();
         if (title.trim() || description.trim()) {
           const newNote = {
             id: crypto.randomUUID(),
             title,
             description,
-            categoryId: selectedCategoryId || "",
+            categoryId: selectedCategoryId || '',
             createdAt: new Intl.DateTimeFormat('en-US', {
               dateStyle: 'medium',
               timeStyle: 'short',
@@ -111,11 +117,11 @@ const useNoteStore = create(
             title: '',
             description: '',
             wordCount: 0,
-            selectedCategoryId: "",
+            selectedCategoryId: '',
           });
           showNotification(
             'Note saved',
-            'Your note has been saved successfully'
+            'Your note has been saved successfully',
           );
         }
       },
@@ -144,8 +150,8 @@ const useNoteStore = create(
     }),
     {
       name: 'notes-storage', // key in localstorage
-    }
-  )
+    },
+  ),
 );
 
 export default useNoteStore;
